@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Préstamos Hipotecarios | Obtén tu Crédito Hoy</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="{% static 'img/AdminLTELogo.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <header class="header">
+            <div class="logo">PréstamosExpress</div>
+        </header>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Obtén tú Crédito de Financiamiento con Nuestros Préstamos Hipotecarios</h1>
+                <p>¡Tasas competitivas y aprobación rápida! Comienza ahora mismo y en 5 minutos sabrás tu elegibilidad.</p>
+            </div>
+            <form class="lead-form">
+                <h2 class="form-title">Solicita tu Estudio Gratis</h2>
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Correo electrónico" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Teléfono" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Valor aproximado de la propiedad" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Monto solicitado" required>
+                </div>
+                <button type="submit">Solicitar Ahora</button>
+                <p style="font-size: 0.8rem; margin-top: 1rem; color: #666;">
+                    Respetamos tu privacidad. Nunca compartimos tu información.
+                </p>
+            </form>
+        </section>
+        <section class="benefits">
+            <h2 style="text-align: center;">¿Por qué elegirnos?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-percentage fa-3x" style="color: #27ae60;"></i>
+                    <h3>Tasas Competitivas</h3>
+                    <p>Obtén las mejores tasas del mercado con condiciones flexibles</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-clock fa-3x" style="color: #27ae60;"></i>
+                    <h3>Aprobación Rápida</h3>
+                    <p>Respuesta en 24-48 horas hábiles</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-user-shield fa-3x" style="color: #27ae60;"></i>
+                    <h3>Asesoría Expertas</h3>
+                    <p>Especialistas con más de 10 años de experiencia</p>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials">
+            <h2 style="text-align: center;">Lo que dicen nuestros clientes</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <p>"El proceso fue más sencillo de lo que imaginaba. ¡En 2 días teníamos la aprobación!"</p>
+                    <h4>- María G., Madrid</h4>
+                </div>
+                <div class="benefit-card">
+                    <p>"Nos ayudaron a encontrar la mejor opción para nuestra situación familiar"</p>
+                    <h4>- Javier R., Barcelona</h4>
+                </div>
+            </div>
+        </section>
+        <section class="faq">
+            <h2 style="text-align: center;">Preguntas Frecuentes</h2>
+            <div class="faq-item">
+                <h3>¿Qué documentación necesito?</h3>
+                <p>DNI, últimas 3 nóminas y declaración de renta del último año</p>
+            </div>
+            <div class="faq-item">
+                <h3>¿Cuánto tarda la aprobación?</h3>
+                <p>Normalmente entre 24 y 48 horas hábiles</p>
+            </div>
+        </section>
+        <footer style="background: #2c3e50; color: white; padding: 2rem 5%; text-align: center;">
+            <p>© 2023 HipotecasExpress - Todos los derechos reservados</p>
+            <p>Contacto: info@hipotecasexpress.com - Tel: 900 123 456</p>
+        </footer>
+    </body>
+</html>

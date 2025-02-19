@@ -2,4 +2,10 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world. You're at the landing_page index.")
+    return render(request, 'index.html')
+
+def dashboard(request):
+    return render(request, 'base.html')
+
+def leads(request):
+    return render(request, 'leads.html')
