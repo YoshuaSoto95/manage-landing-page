@@ -68,8 +68,8 @@
                 <i class="bi bi-list"></i>
               </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="{% url 'dashboard' %}" class="nav-link">Home</a></li>
-            <li class="nav-item d-none d-md-block"><a href="{% url 'index' %}" class="nav-link">Watch Landing Page</a></li>
+            <li class="nav-item d-none d-md-block"><a href="{% url 'landing_page:dashboard' %}" class="nav-link">Home</a></li>
+            <li class="nav-item d-none d-md-block"><a href="{% url 'landing_page:index' %}" class="nav-link">Watch Landing Page</a></li>
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
@@ -117,7 +117,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="{% url 'dashboard' %}" class="brand-link">
+          <a href="{% url 'landing_page:dashboard' %}" class="brand-link">
             <!--begin::Brand Image-->
             <img
               src="{% static 'img/AdminLTELogo.png' %}"
@@ -152,7 +152,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{% url 'leads' %}" class="nav-link">
+                    <a href="{% url 'landing_page:leads' %}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Leads</p>
                     </a>
@@ -183,7 +183,7 @@
               <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'landing_page:dashboard' %}">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                 </ol>
               </div>

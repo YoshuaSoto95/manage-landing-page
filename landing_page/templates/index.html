@@ -18,23 +18,27 @@
                 <h1>Obtén tú Crédito de Financiamiento con Nuestros Préstamos Hipotecarios</h1>
                 <p>¡Tasas competitivas y aprobación rápida! Comienza ahora mismo y en 5 minutos sabrás tu elegibilidad.</p>
             </div>
-            <form class="lead-form">
+            <form class="lead-form" action="{% url 'landing_page:registrar_lead' %}" method="POST">
+                {% csrf_token %}
                 <h2 class="form-title">Solicita tu Estudio Gratis</h2>
                 <div class="form-group">
-                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="text" name="nombre" placeholder="Nombre Completo" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Correo electrónico" required>
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" placeholder="Teléfono" required>
+                    <input type="tel" name="telefono" placeholder="Teléfono" required>
                 </div>
                 <div class="form-group">
-                    <input type="number" placeholder="Valor aproximado de la propiedad" required>
+                    <input type="number" name="valor_propiedad" placeholder="Valor aproximado de la propiedad" required>
                 </div>
                 <div class="form-group">
-                    <input type="number" placeholder="Monto solicitado" required>
+                    <input type="number" name="monto" placeholder="Monto solicitado" required>
                 </div>
+                <div class="form-group">
+                    <input type="text" name="estado" placeholder="Estado" required>
+                </div>              
                 <button type="submit">Solicitar Ahora</button>
                 <p style="font-size: 0.8rem; margin-top: 1rem; color: #666;">
                     Respetamos tu privacidad. Nunca compartimos tu información.

@@ -4,31 +4,38 @@
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Nombre Completo</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Valor de la Propiedad</th>
+        <th scope="col">Monto Solicitado</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Ubicacion</th>
+        <th scope="col">Opciones</th>
       </tr>
     </thead>
     <tbody>
+      {% for lead in leads %}
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+        <td>{{ lead.nombre }}</td>
+        <td>{{ lead.email }}</td>
+        <td>{{ lead.telefono }}</td>
+        <td>$ {{ lead.valor_propiedad }} USD</td>
+        <td>$ {{ lead.monto }} USD</td>
+        <td>{{ lead.estado }}</td>
+        <td>{{ lead.creado_en }}</td>
+        <td>{{ lead.ubicacion }}</td>
+        <td style="display: flex; gap: 10px;">
+          <form action="{% url 'landing_page:eliminar_leads' lead.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>  
+          <a href="{% url 'landing_page:editar_lead' lead.id %}" class="btn btn-warning">Editar</a>
+        </td>
       </tr>
     </tbody>
+    {% endfor %}
   </table>
 
 {% endblock %}

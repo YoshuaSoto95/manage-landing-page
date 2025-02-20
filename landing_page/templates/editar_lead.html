@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+      Editar Lead
+    </div>
+    <div class="card-body">
+        <form action="" method="POST"> 
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Nombre Completo</label>
+                <input type="nombre" class="form-control" id="exampleInputNombre" value="{{ lead.nombre }}" name="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail" class="form-label">Correo Electronico</label>
+                <input type="email" class="form-control" id="exampleInputEmail" value="{{ lead.email }}" name="email" required>
+            </div>   
+            <div class="mb-3">
+                <label for="exampleInputTelefono" class="form-label">Telefono</label>
+                <input type="tel" class="form-control" id="exampleInputTelefono" value="{{ lead.telefono }}" name="telefono" required>
+            </div>   
+            <div class="mb-3">
+                <label for="exampleInputValorPropiedad" class="form-label">Valor de la Propiedad</label>
+                <input type="number" class="form-control" id="exampleInputValorPropiedad" value="{{ lead.valor_propiedad }}" name="valor_propiedad" required>
+            </div>           
+            <div class="mb-3">
+                <label for="exampleInputMonto" class="form-label">Monto Solicitado</label>
+                <input type="number" class="form-control" id="exampleInputMonto" value="{{ lead.monto }}" name="monto" required>
+            </div>    
+            <div class="mb-3">
+                <label for="exampleInputEstado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="exampleInputEstado" value="{{ lead.estado }}" name="estado" required>
+            </div>              
+            <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+            <a href="{% url 'landing_page:leads' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+  </div>
+
+{% endblock %}
