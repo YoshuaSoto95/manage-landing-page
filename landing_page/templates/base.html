@@ -157,10 +157,27 @@
                       <p>Leads</p>
                     </a>
                   </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-table"></i>
+                  <p>
+                    Users
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{% url 'landing_page:users' %}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Users</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{% url 'landing_page:signup' %}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Signup</p>
                     </a>
                   </li>
                 </ul>
@@ -180,13 +197,7 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="{% url 'landing_page:dashboard' %}">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-              </div>
+              <div class="col-sm-6">Dashboard<h3 class="mb-0"></h3></div>
             </div>
             <!--end::Row-->
           </div>

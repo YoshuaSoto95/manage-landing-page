@@ -27,15 +27,14 @@
         <td>{{ lead.creado_en }}</td>
         <td>{{ lead.ubicacion }}</td>
         <td style="display: flex; gap: 10px;">
-          <a href="{% url 'landing_page:editar_lead' lead.id %}" class="btn btn-warning">Editar</a>
           <form action="{% url 'landing_page:eliminar_leads' lead.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Eliminar</button>
           </form>  
-          
+          <a href="{% url 'landing_page:editar_lead' lead.id %}" class="btn btn-warning">Editar</a>
         </td>
       </tr>
     </tbody>
     {% endfor %}
-  </table>
+</table>
 {% endblock %}

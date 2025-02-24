@@ -12,4 +12,7 @@ urlpatterns = [
     path('dashboard/leads/eliminar/<int:id>', views.eliminar_leads, name='eliminar_leads'),
 
     path('thankyou_page/', views.thankyou_page, name='thankyou_page'),
+
+    path('signup/', views.signup, name='signup'),
+    path('users/', views.users, name='users'),
 ]

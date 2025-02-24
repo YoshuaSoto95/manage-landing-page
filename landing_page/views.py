@@ -1,5 +1,9 @@
+from django.db import IntegrityError
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.contrib.auth.models import User
 from .models import Lead
+from django.contrib.auth import login
+from django.contrib import messages
 
 # Create your views here.
 
@@ -61,3 +65,29 @@ def eliminar_leads(request, id):
     lead = get_object_or_404(Lead, id=id)
     lead.delete()
     return redirect('landing_page:leads')
+
+
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+    
+        if password1 == password2:
+            try:
+                user = User.objects.create_user(username=username, password=password1)
+                user.save()
+                login(request, user)
+                messages.error(request, 'Te has registrado correctamente')
+                return redirect('landing_page:dashboard')
+            except:
+                messages.error(request, 'El usuario ya existe')
+                return redirect('landing_page:signup')
+        else:
+            messages.error(request, 'Las contraseñas no coinciden')
+            return redirect('landing_page:signup')
+    return render(request, 'signup.html')
+
+def users(request):
+    users =  User.objects.all()
+    return render(request, 'users.html', {'users': users})
