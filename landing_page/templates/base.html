@@ -100,7 +100,7 @@
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                  <a href="{% url 'landing_page:signout' %}" class="btn btn-default btn-flat float-end">Sign out</a>
                 </li>
                 <!--end::Menu Footer-->
               </ul>
@@ -172,12 +172,6 @@
                     <a href="{% url 'landing_page:users' %}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Users</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{% url 'landing_page:signup' %}" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Signup</p>
                     </a>
                   </li>
                 </ul>

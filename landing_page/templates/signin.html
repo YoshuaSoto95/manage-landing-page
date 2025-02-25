@@ -4,10 +4,10 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Admin Landing Page | Register</title>
+    <title>Admin Landing Page | Login</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="title" content="AdminLTE 4 | Register Page" />
+    <meta name="title" content="AdminLTE 4 | Login Page" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -48,8 +48,7 @@
   </head>
   <!--end::Head-->
   <!--begin::Body-->
-  <body class="register-page bg-body-secondary">
-
+  <body class="login-page bg-body-secondary">
 {% if messages %}
   {% for message in messages %}
     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -59,26 +58,22 @@
   {% endfor %}
 {% endif %}
 
-    <div class="register-box">
-      <div class="register-logo">
-        <b>Admin Landing Page</b>
+    <div class="login-box">
+      <div class="login-logo">
+        <b>Admin </b>Landing Page
       </div>
-      <!-- /.register-logo -->
+      <!-- /.login-logo -->
       <div class="card">
-        <div class="card-body register-card-body">
-          <p class="register-box-msg">Register a new membership</p>
-          <form action="{% url 'landing_page:signup' %}" method="post">
+        <div class="card-body login-card-body">
+          <p class="login-box-msg">Sign in to start your session</p>
+          <form action="{% url 'landing_page:signin' %}" method="post">
             {% csrf_token %}
             <div class="input-group mb-3">
               <input type="text" class="form-control" name="username" placeholder="Username" />
               <div class="input-group-text"><span class="bi bi-person"></span></div>
             </div>
             <div class="input-group mb-3">
-              <input type="password" class="form-control" name="password1" placeholder="Password" />
-              <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
-            </div>
-            <div class="input-group mb-3">
-              <input type="password" class="form-control" name="password2" placeholder="Confirm Password" />
+              <input type="password" class="form-control" name="password" placeholder="Password" />
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
             </div>
             <!--begin::Row-->
@@ -93,14 +88,15 @@
             </div>
             <!--end::Row-->
           </form>
+          <!-- /.social-auth-links -->
           <p class="mb-0" style="padding-top: 15px;">
-            <a href="{% url 'landing_page:signin' %}" class="text-center"> I already have a membership </a>
+            <a href="{% url 'landing_page:signup' %}" class="text-center"> Register a new membership </a>
           </p>
         </div>
-        <!-- /.register-card-body -->
+        <!-- /.login-card-body -->
       </div>
     </div>
-    <!-- /.register-box -->
+    <!-- /.login-box -->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
