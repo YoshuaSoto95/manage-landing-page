@@ -8,27 +8,26 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-#Landing Page vista
+#Landing Page
 def index(request):
     return render(request, 'index.html')
 
-#Thankyou Page de Landing
 def thankyou_page(request):
     return render(request, 'thankyou_page.html')
 
-# Dashboard
+
+# Dashboard Protected
 @login_required
 def dashboard(request):
     return render(request, 'base.html')
 
-# Mostrar los Leads
-
+# Show Leads
 @login_required
 def leads(request):
     leads = Lead.objects.all()
     return render(request, 'leads.html', {'leads': leads})
 
-# Capturar Lead
+# Recorder Lead
 def registrar_lead(request):
     if request.method == 'POST':
         nombre = request.POST['nombre']
@@ -50,7 +49,7 @@ def registrar_lead(request):
             return redirect('landing_page:thankyou_page')
     return render(request, 'index.html')
 
-# Editar Lead Formulario
+# Edit Lead
 @login_required
 def editar_lead(request, id):
     lead = get_object_or_404(Lead, id=id)
@@ -65,13 +64,14 @@ def editar_lead(request, id):
         return redirect('landing_page:leads')
     return render(request, 'editar_lead.html', {'lead': lead})
 
-#Eliminar los Leads
+# Delete Lead
 @login_required
 def eliminar_leads(request, id):
     lead = get_object_or_404(Lead, id=id)
     lead.delete()
     return redirect('landing_page:leads')
 
+# Login
 def signin(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -113,7 +113,14 @@ def signout(request):
     messages.error(request, 'Te has deslogueado correctamente')
     return redirect('landing_page:signin')
 
+# Users 
 @login_required
 def users(request):
     users =  User.objects.all()
     return render(request, 'users.html', {'users': users})
+
+@login_required
+def delete_user(request, id):
+    user = get_object_or_404(User, id=id)
+    user.delete()
+    return redirect('landing_page:users')
