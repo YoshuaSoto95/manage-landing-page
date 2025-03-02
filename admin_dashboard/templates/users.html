@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="container-fluid" style="padding: 10px 0;">
+    <h2>Users</h2>
+</div>
+
+<div class="row">
+    <div class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark table-bordered">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">First_name</th>
+                <th scope="col">Last_name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Last Login</th>
+                <th scope="col">Date Register</th>
+                <th scope="col">Options</th>
+              </tr>
+            </thead>
+                {% for user in users %}
+                <tbody>
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.last_login }}</td>
+                        <td>{{ user.date_joined }}</td>
+                        <td>
+                            <!-- Button trigger Modal Edit-->
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditModal{{ user.id }}">
+                                Edit
+                            </button>
+                            <!-- Modal Edit-->
+                            <div class="modal fade" id="EditModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="EditModalLabel{{ user.id }}">Edit User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{% url 'admin_dashboard:edit_user' user.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername">First Name</label>
+                                                <input type="text" class="form-control" id="exampleInputfirstName" name="first_name" value="{{ user.first_name }}">                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername">Last Name</label>
+                                                <input type="text" class="form-control" id="exampleInputLastName" name="last_name" value="{{ user.last_name }}">                                           </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername">Username</label>
+                                                <input type="text" class="form-control" id="exampleInputUsername" name="username" value="{{ user.username }}">                                            </div>
+                                            <div class="form-group">
+                                              <label for="exampleInputEmail1">Email address</label>
+                                              <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" value="{{ user.email }}">
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-warning">Save changes</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <!-- Button trigger Modal Delete -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal{{ user.id }}">
+                                Delete
+                            </button>
+                            <!-- Modal Delete -->
+                            <div class="modal fade" id="DeleteModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="DeleteModalLabel{{ user.id }}">Delete User</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                            <div class="modal-body">
+                                            Are you sure to delete this user {{ user.first_name }} {{ user.last_name }} ?
+                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <form action="{% url 'admin_dashboard:delete_users' user.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+        </table>
+        <!-- Button trigger Modal Create User -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CreateUserModal">
+            Create User
+        </button>
+        <!-- Modal Create User-->
+        <div class="modal fade" id="CreateUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="CreateUserModalLabel">New User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'admin_dashboard:register_user' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputUsername">First Name</label>
+                            <input type="text" class="form-control" id="exampleInputfirstName" name="first_name" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername">Last Name</label>
+                            <input type="text" class="form-control" id="exampleInputLastName" name="last_name" placeholder="Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername">Username</label>
+                            <input type="text" class="form-control" id="exampleInputUsername" name="username" placeholder="Username" required>
+                          </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input type="password" class="form-control" name="password1" id="exampleInputPassword1" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Confirm Password</label>
+                            <input type="password" class="form-control" name="password2" id="exampleInputPassword2" placeholder="Confirm Password" required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Create User</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

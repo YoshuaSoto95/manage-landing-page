@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préstamos Hipotecarios | Obtén tu Crédito Hoy</title>
+    <link rel="stylesheet" href="{% static 'css/style_landing.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">HipotecasExpress</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Obtén la Casa de Tus Sueños con Nuestros Préstamos Hipotecarios</h1>
+            <p>¡Tasas competitivas y aprobación rápida! Comienza ahora mismo y en 5 minutos sabrás tu elegibilidad.</p>
+        </div>
+
+        <form class="lead-form" action="{% url 'web_landing:register_lead' %}" method="POST">
+            {% csrf_token %}
+            <h2 class="form-title">Solicita tu Estudio Gratis</h2>
+            <div class="form-group">
+                <input type="text" name="fullname" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" name="phone" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group">
+                <input type="number" name="value_property" placeholder="Valor aproximado de la propiedad" required>
+            </div>
+            <div class="form-group">
+                <input type="number" name="mortgage" placeholder="Monto solicitado" required>
+            </div>
+            <div class="form-group">
+                <select class="form-select form-select-lg mb-3" name="state" aria-label="Default select example" required>
+                    <option value="" disabled selected>Escoje el estado</option>
+                    <option value="Alabama">Alabama</option>
+                    <option value="Alaska">Alaska</option>
+                    <option value="Arizona">Arizona</option>
+                    <option value="Arkansas">Arkansas</option>
+                    <option value="California">California</option>
+                    <option value="Colorado">Colorado</option>
+                    <option value="Connecticut">Connecticut</option>
+                    <option value="Delaware">Delaware</option>
+                    <option value="Florida">Florida</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Hawaii">Hawaii</option>
+                    <option value="Idaho">Idaho</option>
+                    <option value="Illinois">Illinois</option>
+                    <option value="Indiana">Indiana</option>
+                    <option value="Iowa">Iowa</option>
+                    <option value="Kansas">Kansas</option>
+                    <option value="Kentucky">Kentucky</option>
+                    <option value="Louisiana">Louisiana</option>
+                    <option value="Maine">Maine</option>
+                    <option value="Maryland">Maryland</option>
+                    <option value="Massachusetts">Massachusetts</option>
+                    <option value="Michigan">Michigan</option>
+                    <option value="Minnesota">Minnesota</option>
+                    <option value="Mississippi">Mississippi</option>
+                    <option value="Missouri">Missouri</option>
+                    <option value="Montana">Montana</option>
+                    <option value="Nebraska">Nebraska</option>
+                    <option value="Nevada">Nevada</option>
+                    <option value="New Hampshire">New Hampshire</option>
+                    <option value="New Jersey">New Jersey</option>
+                    <option value="New Mexico">New Mexico</option>
+                    <option value="New York">New York</option>
+                    <option value="North Carolina">North Carolina</option>
+                    <option value="North Dakota">North Dakota</option>
+                    <option value="Ohio">Ohio</option>
+                    <option value="Oklahoma">Oklahoma</option>
+                    <option value="Oregon">Oregon</option>
+                    <option value="Pennsylvania">Pennsylvania</option>
+                    <option value="Rhode Island">Rhode Island</option>
+                    <option value="South Carolina">South Carolina</option>
+                    <option value="South Dakota">South Dakota</option>
+                    <option value="Tennessee">Tennessee</option>
+                    <option value="Texas">Texas</option>
+                    <option value="Utah">Utah</option>
+                    <option value="Vermont">Vermont</option>
+                    <option value="Virginia">Virginia</option>
+                    <option value="Washington">Washington</option>
+                    <option value="West Virginia">West Virginia</option>
+                    <option value="Wisconsin">Wisconsin</option>
+                    <option value="Wyoming">Wyoming</option>
+                </select>
+            </div>
+            <button type="submit">Solicitar Ahora</button>
+            <p style="font-size: 0.8rem; margin-top: 1rem; color: #666;">
+                Respetamos tu privacidad. Nunca compartimos tu información.
+            </p>
+        </form>
+    </section>
+
+    <section class="benefits">
+        <h2 style="text-align: center;">¿Por qué elegirnos?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-percentage fa-3x" style="color: #27ae60;"></i>
+                <h3>Tasas Competitivas</h3>
+                <p>Obtén las mejores tasas del mercado con condiciones flexibles</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-clock fa-3x" style="color: #27ae60;"></i>
+                <h3>Aprobación Rápida</h3>
+                <p>Respuesta en 24-48 horas hábiles</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-user-shield fa-3x" style="color: #27ae60;"></i>
+                <h3>Asesoría Expertas</h3>
+                <p>Especialistas con más de 10 años de experiencia</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 style="text-align: center;">Lo que dicen nuestros clientes</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <p>"El proceso fue más sencillo de lo que imaginaba. ¡En 2 días teníamos la aprobación!"</p>
+                <h4>- María G., Madrid</h4>
+            </div>
+            <div class="benefit-card">
+                <p>"Nos ayudaron a encontrar la mejor opción para nuestra situación familiar"</p>
+                <h4>- Javier R., Barcelona</h4>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2 style="text-align: center;">Preguntas Frecuentes</h2>
+        <div class="faq-item">
+            <h3>¿Qué documentación necesito?</h3>
+            <p>DNI, últimas 3 nóminas y declaración de renta del último año</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Cuánto tarda la aprobación?</h3>
+            <p>Normalmente entre 24 y 48 horas hábiles</p>
+        </div>
+    </section>
+
+    <footer style="background: #2c3e50; color: white; padding: 2rem 5%; text-align: center;">
+        <p>© 2023 HipotecasExpress - Todos los derechos reservados</p>
+        <p>Contacto: info@hipotecasexpress.com - Tel: 900 123 456</p>
+        <a href="{% url 'admin_dashboard:dashboard' %}">Dashboard</a>
+    </footer>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

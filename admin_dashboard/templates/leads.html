@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+<div class="row">
+    <h2>Leads</h2>
+    <div class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark table-bordered">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Value Property</th>
+                <th scope="col">Mortgage Required</th>
+                <th scope="col">State</th>
+                <th scope="col">Location</th>
+                <th scope="col">Create At</th>
+                <th scope="col">Options</th>
+              </tr>
+            </thead>
+                {% for lead in leads %}
+                <tbody>
+                    <tr>
+                        <td>{{  lead.id }}</td>
+                        <td>{{ lead.fullname }}</td>
+                        <td>{{ lead.email }}</td>
+                        <td>{{ lead.phone }}</td>
+                        <td>$ {{ lead.value_property }} USD</td>
+                        <td>${{ lead.mortgage }} USD</td>
+                        <td>{{ lead.state }}</td>
+                        <td>{{ lead.location }}</td>
+                        <td>{{ lead.created_at }}</td>
+                        <td>
+                            <!-- Button trigger Modal Edit -->
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditModal{{ lead.id }}">
+                                Edit
+                            </button>
+                            <!-- Button trigger Modal Delete -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal{{ lead.id }}">
+                                Delete
+                            </button>
+                            <!-- Modal Delete -->
+                            <div class="modal fade" id="DeleteModal{{ lead.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="DeleteModalLabel{{ lead.id }}">Delete Lead</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        Are you sure to delete this lead {{ lead.fullname }} ?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <form action="{% url 'admin_dashboard:delete_leads' lead.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Yes, Delete Lead</button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Edit-->
+                            <div class="modal fade" id="EditModal{{ lead.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="EditModalLabel{{ lead.id }}">Edit Lead</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{% url 'admin_dashboard:edit_leads' lead.id%}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="exampleInputFullname">Fullname</label>
+                                                <input type="text" class="form-control" id="InputFullname" name="fullname" value="{{ lead.fullname }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" id="InputEmail1" name="email" aria-describedby="emailHelp" value="{{ lead.email }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPhone">Phone</label>
+                                                <input type="tel" class="form-control" id="InputPhone" name="phone" value="{{ lead.phone }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputFullname">Value Property</label>
+                                                <input type="number" class="form-control" id="InputValue_Property" name="value_property" value="{{ lead.value_property }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputMortgage">Mortgage</label>
+                                                <input type="number" class="form-control" id="InputMortgage" name="mortgage" value="{{ lead.mortgage }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputState">Select State</label>
+                                                <select class="form-control" name="state" id="InputState" aria-label="Default select example" value="{{ lead.state }}" required>
+                                                    <option value="" disabled selected>{{ lead.state }}</option>
+                                                    <option value="Alabama">Alabama</option>
+                                                    <option value="Alaska">Alaska</option>
+                                                    <option value="Arizona">Arizona</option>
+                                                    <option value="Arkansas">Arkansas</option>
+                                                    <option value="California">California</option>
+                                                    <option value="Colorado">Colorado</option>
+                                                    <option value="Connecticut">Connecticut</option>
+                                                    <option value="Delaware">Delaware</option>
+                                                    <option value="Florida">Florida</option>
+                                                    <option value="Georgia">Georgia</option>
+                                                    <option value="Hawaii">Hawaii</option>
+                                                    <option value="Idaho">Idaho</option>
+                                                    <option value="Illinois">Illinois</option>
+                                                    <option value="Indiana">Indiana</option>
+                                                    <option value="Iowa">Iowa</option>
+                                                    <option value="Kansas">Kansas</option>
+                                                    <option value="Kentucky">Kentucky</option>
+                                                    <option value="Louisiana">Louisiana</option>
+                                                    <option value="Maine">Maine</option>
+                                                    <option value="Maryland">Maryland</option>
+                                                    <option value="Massachusetts">Massachusetts</option>
+                                                    <option value="Michigan">Michigan</option>
+                                                    <option value="Minnesota">Minnesota</option>
+                                                    <option value="Mississippi">Mississippi</option>
+                                                    <option value="Missouri">Missouri</option>
+                                                    <option value="Montana">Montana</option>
+                                                    <option value="Nebraska">Nebraska</option>
+                                                    <option value="Nevada">Nevada</option>
+                                                    <option value="New Hampshire">New Hampshire</option>
+                                                    <option value="New Jersey">New Jersey</option>
+                                                    <option value="New Mexico">New Mexico</option>
+                                                    <option value="New York">New York</option>
+                                                    <option value="North Carolina">North Carolina</option>
+                                                    <option value="North Dakota">North Dakota</option>
+                                                    <option value="Ohio">Ohio</option>
+                                                    <option value="Oklahoma">Oklahoma</option>
+                                                    <option value="Oregon">Oregon</option>
+                                                    <option value="Pennsylvania">Pennsylvania</option>
+                                                    <option value="Rhode Island">Rhode Island</option>
+                                                    <option value="South Carolina">South Carolina</option>
+                                                    <option value="South Dakota">South Dakota</option>
+                                                    <option value="Tennessee">Tennessee</option>
+                                                    <option value="Texas">Texas</option>
+                                                    <option value="Utah">Utah</option>
+                                                    <option value="Vermont">Vermont</option>
+                                                    <option value="Virginia">Virginia</option>
+                                                    <option value="Washington">Washington</option>
+                                                    <option value="West Virginia">West Virginia</option>
+                                                    <option value="Wisconsin">Wisconsin</option>
+                                                    <option value="Wyoming">Wyoming</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-warning">Save changes</button>
+                                    </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
